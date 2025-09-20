@@ -1,0 +1,7 @@
+{
+  "lot": "A",
+  "spots": [
+    {"id": 1, "occupied": false},
+    {"id": 2, "occupied": true}
+  ]
+}
