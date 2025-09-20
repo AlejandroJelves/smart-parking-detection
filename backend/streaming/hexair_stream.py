@@ -4,8 +4,7 @@ import asyncio
 import requests
 from aiortc import RTCPeerConnection, RTCSessionDescription
 
-WHEP_URL = "https://customer-de5fgahocfauk9ea.cloudflarestream.com/fc5cd217af19c699ba75808f9f150250/webRTC/play"
-
+WHEP_URL = "https://customer-de5fgahocfauk9ea.cloudflarestream.com/fc5cd217af19c699ba75808f9f150250/iframe"
 async def run():
     pc = RTCPeerConnection()
 
