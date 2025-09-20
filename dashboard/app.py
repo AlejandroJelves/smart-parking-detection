@@ -106,47 +106,46 @@ except:
                   title="Predicted Parking Occupancy (Demo)")
     st.plotly_chart(fig, use_container_width=True)
 
-# Section 3: Snapshot
-st.subheader("Snapshot Preview")
-st.image("https://placehold.co/600x400?text=Drone+Snapshot", caption="Latest Drone View")
-
-# Section 4: AI Summary
+# Section 3: AI Summary
 st.subheader("AI Summary")
 st.info("Currently estimated at 130 / 200 taken (~65% full). Based on trends, occupancy could rise to ~85% tomorrow afternoon.")
 
-# Section 5: Drone Operations
-# --- Section 5: Drone Operations ---
+# Section 4: Drone Operations
 st.subheader("🚁 Drone Operations")
 
 col3, col4 = st.columns(2)
 
 with col3:
+    
     st.write("**Telemetry Data:**")
+    if telemetry_data["isFlying"]:
+        st.success("Drone is in the air ✈️ — live feed active")
+    else:
+        st.warning("Drone is on the ground 🛬 — feed may be idle")
     st.metric("Streaming", "✅" if telemetry_data["isStreaming"] else "❌")
     st.metric("Flying", "✅" if telemetry_data["isFlying"] else "❌")
     st.metric("Battery", f"{telemetry_data['battery']}%" if telemetry_data["battery"] else "Unknown")
     if telemetry_data["position"]:
         lat, lon, alt = telemetry_data["position"]
         st.write(f"🌍 Position: {lat}, {lon}, Alt {alt}m")
+    st.subheader("Snapshot Preview")
+    st.image("https://placehold.co/600x400?text=Drone+Snapshot", caption="Latest Drone View")
+
 
 with col4:
     st.write("**Live Drone Video Feed:**")
-
-    if telemetry_data["isFlying"]:
-        st.success("Drone is in the air ✈️ — live feed active")
-    else:
-        st.warning("Drone is on the ground 🛬 — feed may be idle")
-
     st.markdown(
         """
         <iframe 
           src="https://customer-de5fgahocfauk9ea.cloudflarestream.com/fc5cd217af19c699ba75808f9f150250/iframe"
-          width="440" height="360" 
+          width="640" height="360" 
           frameborder="0" 
           allow="autoplay; fullscreen" 
           allowfullscreen>
         </iframe>
         """,
         unsafe_allow_html=True,
+    
+
     )
 
