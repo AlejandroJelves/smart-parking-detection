@@ -115,9 +115,11 @@ st.subheader("AI Summary")
 st.info("Currently estimated at 130 / 200 taken (~65% full). Based on trends, occupancy could rise to ~85% tomorrow afternoon.")
 
 # Section 5: Drone Operations
+# --- Section 5: Drone Operations ---
 st.subheader("🚁 Drone Operations")
 
 col3, col4 = st.columns(2)
+
 with col3:
     st.write("**Telemetry Data:**")
     st.metric("Streaming", "✅" if telemetry_data["isStreaming"] else "❌")
@@ -128,12 +130,23 @@ with col3:
         st.write(f"🌍 Position: {lat}, {lon}, Alt {alt}m")
 
 with col4:
-    st.write("**Live Video Feed:**")
+    st.write("**Live Drone Video Feed:**")
+
+    if telemetry_data["isFlying"]:
+        st.success("Drone is in the air ✈️ — live feed active")
+    else:
+        st.warning("Drone is on the ground 🛬 — feed may be idle")
+
     st.markdown(
         """
-        <iframe src="https://customer-de5fgahocfauk9ea.cloudflarestream.com/fc5cd217af19c699ba75808f9f150250/webRTC/play"
-        width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+        <iframe 
+          src="https://customer-de5fgahocfauk9ea.cloudflarestream.com/fc5cd217af19c699ba75808f9f150250/iframe"
+          width="440" height="360" 
+          frameborder="0" 
+          allow="autoplay; fullscreen" 
+          allowfullscreen>
         </iframe>
         """,
         unsafe_allow_html=True,
     )
+
