@@ -1,29 +1,22 @@
-# 🚀 Smart Parking Detection
+# 🚗 Smart Parking Detection
 
-Hackathon project using FastAPI + Gemini + Streamlit.
+Smart Parking Detection is a hackathon project that uses **FastAPI**, **Google Gemini AI**, **Streamlit**, and **OpenCV** to analyze live drone/stream video feeds and predict parking occupancy trends in real time.
 
-## Setup
+The system captures frames from a livestream or fallback video, ingests them through Gemini AI for parking spot detection, stores results in a JSON history, and then forecasts future parking demand using a Random Forest model. A Streamlit dashboard visualizes live occupancy, historical trends, and AI-powered forecasts.
 
-### Backend
+---
+
+## 🛠️ Tech Stack
+- **Backend:** FastAPI, Python, Uvicorn, Requests, OpenCV, Pillow  
+- **AI/ML:** Google Gemini API, scikit-learn (RandomForest), Pandas, NumPy  
+- **Frontend:** Streamlit, Plotly, Requests  
+- **Data Handling:** JSON history logs, .env config with dotenv
+
+---
+
+## ⚡ Setup
+
+### 1. Clone the repo
 ```bash
-cd backend
-python -m venv venv
-source venv/bin/activate   # or venv\Scripts\activate on Windows
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
-### Dashboard
-```bash
-cd dashboard
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-### Env Vars (.env)
-```
-GEMINI_API_KEY=xxxx
-MONGO_URI=xxxx
-```
+git clone https://github.com/<your-org>/smart-parking-detection.git
+cd smart-parking-detection
