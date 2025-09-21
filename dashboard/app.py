@@ -65,19 +65,21 @@ st.title("🚗 Smart Parking in the General Area")
 # Section 1: KPI – Estimated occupancy
 st.subheader("Estimated Parking Occupancy (Entire Area)")
 try:
-    response = requests.get(f"{API_URL}/spots").json()
-    taken_spots = response.get("taken_spots", None)
-    estimated_total = response.get("estimated_total", None)
-    confidence = response.get("confidence", 0.7)
+    history_response = requests.get(f"{API_URL}/history?limit=1").json()
+    if history_response:
+        latest = history_response[-1]
+        taken_spots = latest["taken_spots"]
+        estimated_total = latest["estimated_total"]
+        confidence = latest.get("confidence", 0.7)
 
-    if taken_spots is not None and estimated_total is not None:
         st.metric("Current Occupancy", f"{taken_spots} / {estimated_total}")
         st.caption(f"Confidence: {int(confidence*100)}% (AI-estimated)")
         st.progress(taken_spots / estimated_total if estimated_total else 0)
     else:
-        st.warning("No live estimate available.")
+        st.warning("No historical data yet.")
 except Exception as e:
-    st.warning(f"Could not load live data: {e}")
+    st.warning(f"Could not load history: {e}")
+    # Demo fallback
     taken_spots, estimated_total = 130, 200
     st.metric("Current Occupancy", f"{taken_spots} / {estimated_total}")
     st.caption("Confidence: 70% (Demo Mode)")
@@ -86,15 +88,17 @@ except Exception as e:
 # Section 2: Forecast – Parking occupancy trends
 st.subheader("Forecast: Parking Occupancy Over Time")
 try:
-    forecast_response = requests.get(f"{API_URL}/predict").json()
-    df_forecast = pd.DataFrame(forecast_response["forecast"])
+    forecast_response = requests.get(f"{API_URL}/forecast?h=12&step=60").json()
+    df_forecast = pd.DataFrame(forecast_response)
     df_forecast["occupancy_rate"] = df_forecast["taken_spots"] / df_forecast["estimated_total"]
 
     fig = px.line(df_forecast, x="time", y="occupancy_rate",
                   labels={"occupancy_rate": "Occupancy Rate"},
                   title="Predicted Parking Occupancy (%)")
     st.plotly_chart(fig, use_container_width=True)
-except:
+except Exception as e:
+    st.warning(f"Could not load forecast: {e}")
+    # Demo fallback
     sample = pd.DataFrame({
         "time": pd.date_range("2025-09-20", periods=12, freq="H"),
         "taken_spots": [120, 130, 140, 150, 160, 170, 180, 170, 160, 150, 140, 130],
@@ -110,13 +114,14 @@ except:
 st.subheader("AI Summary")
 st.info("Currently estimated at 130 / 200 taken (~65% full). Based on trends, occupancy could rise to ~85% tomorrow afternoon.")
 
-# Section 4: Drone Operations
+# -------------------------
+# Section 4: Drone Operations (unchanged)
+# -------------------------
 st.subheader("🚁 Drone Operations")
 
 col3, col4 = st.columns(2)
 
 with col3:
-    
     st.write("**Telemetry Data:**")
     if telemetry_data["isFlying"]:
         st.success("Drone is in the air ✈️ — live feed active")
@@ -128,9 +133,6 @@ with col3:
     if telemetry_data["position"]:
         lat, lon, alt = telemetry_data["position"]
         st.write(f"🌍 Position: {lat}, {lon}, Alt {alt}m")
-    st.subheader("Snapshot Preview")
-    st.image("https://placehold.co/600x400?text=Drone+Snapshot", caption="Latest Drone View")
-
 
 with col4:
     st.write("**Live Drone Video Feed:**")
@@ -145,7 +147,4 @@ with col4:
         </iframe>
         """,
         unsafe_allow_html=True,
-    
-
     )
-

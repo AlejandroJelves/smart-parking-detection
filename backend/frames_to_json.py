@@ -12,7 +12,7 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 results = []
 
 frames_dir = "backend/data/frames/"
-output_json = "parking_history.json"
+output_json = "backend/parking_history.json"
 
 prompt = """
 You are analyzing a parking lot from a drone.
