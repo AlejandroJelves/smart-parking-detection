@@ -1,0 +1,83 @@
+[
+  {
+    "timestamp": "2025-09-20T20:44:29.938831",
+    "frame": "DJI_20250918171109_0003_V.MP4_frame_0000.jpg",
+    "taken_spots": 20,
+    "open_spots": 100,
+    "estimated_total": 120,
+    "confidence": 0.75,
+    "source": "Gemini scan"
+  },
+  {
+    "timestamp": "2025-09-20T20:44:31.461484",
+    "frame": "DJI_20250918171109_0003_V.MP4_frame_0001.jpg",
+    "taken_spots": 10,
+    "open_spots": 70,
+    "estimated_total": 80,
+    "confidence": 0.75,
+    "source": "Gemini scan"
+  },
+  {
+    "timestamp": "2025-09-20T20:44:32.704009",
+    "frame": "DJI_20250918171109_0003_V.MP4_frame_0002.jpg",
+    "taken_spots": 12,
+    "open_spots": 106,
+    "estimated_total": 118,
+    "confidence": 0.75,
+    "source": "Gemini scan"
+  },
+  {
+    "timestamp": "2025-09-20T20:44:34.352478",
+    "frame": "DJI_20250918171109_0003_V.MP4_frame_0003.jpg",
+    "taken_spots": 10,
+    "open_spots": 120,
+    "estimated_total": 130,
+    "confidence": 0.75,
+    "source": "Gemini scan"
+  },
+  {
+    "timestamp": "2025-09-20T20:44:35.834824",
+    "frame": "DJI_20250918171109_0003_V.MP4_frame_0004.jpg",
+    "taken_spots": 10,
+    "open_spots": 80,
+    "estimated_total": 90,
+    "confidence": 0.75,
+    "source": "Gemini scan"
+  },
+  {
+    "timestamp": "2025-09-20T20:44:37.673412",
+    "frame": "DJI_20250918171109_0003_V.MP4_frame_0005.jpg",
+    "taken_spots": 10,
+    "open_spots": 100,
+    "estimated_total": 110,
+    "confidence": 0.75,
+    "source": "Gemini scan"
+  },
+  {
+    "timestamp": "2025-09-20T20:44:39.099987",
+    "frame": "DJI_20250918171109_0003_V.MP4_frame_0006.jpg",
+    "taken_spots": 6,
+    "open_spots": 80,
+    "estimated_total": 86,
+    "confidence": 0.75,
+    "source": "Gemini scan"
+  },
+  {
+    "timestamp": "2025-09-20T20:44:40.589903",
+    "frame": "DJI_20250918171109_0003_V.MP4_frame_0007.jpg",
+    "taken_spots": 5,
+    "open_spots": 80,
+    "estimated_total": 85,
+    "confidence": 0.75,
+    "source": "Gemini scan"
+  },
+  {
+    "timestamp": "2025-09-20T20:44:42.052803",
+    "frame": "DJI_20250918171109_0003_V.MP4_frame_0008.jpg",
+    "taken_spots": 10,
+    "open_spots": 61,
+    "estimated_total": 71,
+    "confidence": 0.75,
+    "source": "Gemini scan"
+  }
+]
