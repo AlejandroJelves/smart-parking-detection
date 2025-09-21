@@ -14,10 +14,3 @@ The system captures frames from a livestream or fallback video, ingests them thr
 
 ---
 
-## ⚡ Setup
-
-### 1. Clone the repo
-```bash
-git clone https://github.com/<your-org>/smart-parking-detection.git
-cd smart-parking-detection
-<img width="790" height="502" alt="image" src="https://github.com/user-attachments/assets/5f9f4f34-9448-4b36-9c77-308d637ff7d7" />
